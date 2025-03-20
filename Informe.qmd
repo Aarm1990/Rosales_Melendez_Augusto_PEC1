@@ -1,0 +1,8 @@
+---
+title: "Informe"
+author: "Augusto Rosales"
+format: pdf
+editor: visual
+---
+
+# Tabla de contenidos
