@@ -3,6 +3,13 @@ title: "Informe"
 author: "Augusto Rosales"
 format: pdf
 editor: visual
+toc: true
+toc-depth: 3
+toc-location: left
 ---
 
-# Tabla de contenidos
+# Resumen
+
+# Objetivos
+
+# 
