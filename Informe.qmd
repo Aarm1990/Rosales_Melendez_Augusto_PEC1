@@ -1,15 +1,121 @@
 ---
-title: "Informe"
+title: "Metabolitos en orina asociados a la Caquexia en pacientes con cancer"
 author: "Augusto Rosales"
 format: pdf
 editor: visual
 toc: true
 toc-depth: 3
 toc-location: left
+bibliography: references.bib
 ---
 
-# Resumen
+## Resumen
 
-# Objetivos
+**Introducción:** La caquexia es una condicion deteriorante, la cual afecta gravemente la calidad de vida de los pacientes con cancer. Es importante desarrollar metodos clinicos para su predicción. **Objetivo:** Realizar un análisis comparativo de los metabolitos asociados a la caquexia en pacientes con cancer. **Metodos:** Estudio comparativo en muestras de orina de pacientes con cancer, los casos presentaron caquexia y los controles no. El análisis de datos involucro analisis de componentes principales y analisis descriptivo, para determinar la expresión diferencial se realiza analísis bivariado por medio de prueba de t student , estimandose diferencia de medias y valor de p asociado. **Resultados:** Los metabolitos urinarios estan expresados diferencialmente en pacientes con caquexia, entre los cuales destacan: La glucosa, adipato, quinolato, leucina, valina mioinositol. **Conclusión:** La caquexia provoca cambios diferenciales en la expresion de metabolitos urinarios pero a la luz de los resultados no es posible usarlo como herramienta de tamizaje o diagnostica, por lo que se sugiere realizar estudios con tecnicas multivariantes con el fin de desarrollar modelos de predicción clinica.
 
-# 
+### Introducción
+
+La caquexia es una afección caracterizada por una pérdida de más del 10 % del peso corporal, que incluye pérdida de masa muscular y grasa, en una persona que no está tratando de perder peso^1^. Uno de los metodos clinicos para la predicción de la caquexia ha sido el uso de la medición de metabolitos en orina y sangre, los cuales permiten tomar medidas preventivas para evitar el desarrollo de esta condición.
+
+## Objetivos
+
+-   Caracterizar los metabolitos presentes en la orina.
+
+-   Evaluar si existe perfil metabolico diferencial en los pacientes con cancer y caquexia.
+
+-   Comparar la excreción de metabolitos urinarios entre los casos y los controles.
+
+## Materiales y metodos
+
+### Diseño de estudio
+
+Estudio comparativo de muestras de orina en pacientes con estadio avanzando de cancer de colon y pulmon. Se designo como casos los pacientes con caquexia y como controles sin esta condición. Se excluyó a los pacientes con exposición a radiacion renal o que tuvieran antecedente de enfermedad renal.
+
+### Recolección de la muestra
+
+La muestra de orina se recolecto en una sola toma, la entrega se realizo voluntariamente por parte de los pacientes, previo consentimiento informado y aprobación del comite de etica local.
+
+### Espectrometría
+
+Se ajusto el ph de las muestras de orina a un valor de 6.75, posteriormente se adquirieron los espectros de masa unidimensionales mediante una secuencia de tipo NOESY, se empleo un espectrometro de masa Varian Inova de 600 MHz. El perfilado de metabolitos se realizo con el software Chenomx NMRSuite 4.6, la medición se valido con dos expertos independientes. Ademas de la espectrometria se realizo cuantificación de la creatinina por metodo colorimetrico.
+
+## Analisis estadistico
+
+### Fuente de datos
+
+Los datos se obtuvieron del repositorio <https://github.com/nutrimetabolomics/metaboData> ^1^, especificamente del dataset: cachexia, estos datos se encuentran depurados y fueron obtenidos originalmente del estudio de caquexia y metabolitos urinarios de Eisner et al. ^2^
+
+### Procesamiento de datos
+
+El procesamiento de datos se realizo en RStudio V. 2024.12.1, los datos del experimiento se almacenaron con un formato Summarized experiments, usando el paquete BiocManager. Se configuro los metadatos del experimento como el id de los pacientes y su estado de caquexia, los resultados del experimento fueron la intensidad de cada metabolito en orina. Ya que existian diferencias considerables entre las concentraciones de metabolitos en orina, se realizo una transformación logaritmica para asegurar normalidad de los datos y permitir una representación gráfica mas uniforme de su distribuciones.
+
+### Análisis de datos
+
+El analisis descriptivo se realizo mediante un gráfico de caja y bigotes de todos los metabolitos, con el fin de observar su distribución. Para el analisis exploratorio se uso un analisis de componentes principales con el fin de reducir la dimensionalidad de los datos y encontrar posibles agrupamientos segun su estado de caquexia. Finalmente el analisis Bivariado se hizo uso de una prueba de T de student con correción tipo FDR, con el objeto de comparar las medias de los metabolitos y evaluar si existen diferencias estadisticamente significativas en la excreta de los metabolitos en orina en los casos y controles. El analisis se documento completamente y esta disponible en un repositorio de Github creado por el investigador. Ver archivo codigo.
+
+## Resultados
+
+De 70 pacientes con cancer de colon y pulmón en etapa avanzada, el 61 % (47/77) presentaron caquexia. La distribución de los valores de los metabolitos presentaron una distribucion normal. ver figura 1. El metabolito con mayor concentración fue la creatinina con una media de 3.79 y desviación estandar de 1.40 y el menor el fumarato con una media 1.41 y desviación estandar de 0.98.
+
+Figura 1. Boxplot de cada metabolito
+
+![](images/clipboard-573737726.png){fig-align="center" width="585"}
+
+Para el analisis de componentes principales se encontro que el PCA 1 explicaba el 58.8% de la varianza de los datos. Ademas los 10 metabolitos que mas importancia tuvieron para el PCA 1 fueron Creatina, Valina, Alanina, Glutamina, Pyroglutamina, Dimethilamina y Asparagina ver (Figura 2).
+
+Figura 2. Importancia de cada metabolito al PCA 1
+
+![](images/clipboard-1129151276.png){fig-align="center" width="446"}
+
+El analisis del PCA revelo que no agrupamiento en el perfil metabolico de los pacientes con y sin caquexia, pero existe cierta tendencia a que los pacientes con caquexia tengan valores mas extremos en su perfil metabolico.
+
+![](images/clipboard-2506994193.png){fig-align="center" width="482"}
+
+En relación con el analisis diferencial de los 63 metabolitos identificados, 55 presentaron diferencias estadisticamente significativas en la prueba t de student con un valor de p \< 0.05. A continuación se presentan los 10 metabolitos con mayor significancia estadistica:
+
+| Metabolito      | Media en Casos | Media en Controles | Valor de p |
+|-----------------|:--------------:|:------------------:|:----------:|
+| Glucosa         |      5.81      |        4.69        |  \<0.001   |
+| Adipato         |      2.84      |        1.87        |  \<0.001   |
+| Quinolato       |      4.22      |        3.36        |  \<0.001   |
+| Leucina         |      3.17      |        2.37        |  \<0.001   |
+| Valina          |      3.54      |        2.73        |  \<0.001   |
+| Mioinositol     |      4.70      |        3.67        |  \<0.001   |
+| Hidroxivalerato |      2.92      |        1.87        |  \<0.001   |
+| Dimetilglicina  |      3.18      |        2.15        |  \<0.001   |
+| Hidroxibutirato |      2.89      |        2.01        |  \<0.001   |
+| Succinato       |      3.81      |        2.58        |  \<0.001   |
+
+: Metabolitos expresados diferencialmente en pacientes con y sin caquexia
+
+## Discusión
+
+Se encontro una excreción diferencial en los metabolitos urinarios entre los casos y los controles, en el análisis de componentes principales no se observo agrupamiento por perfil metabolico. Estos hallazgos son consistentes con estudio previos que tambien encuentran solapamiento entre condiciones clinicas.^3^
+
+La excreción aumentada de metabolitos como la glucosa, creatinina, adipato y quilato estan asociados al hipercatabolismo propio de la caquexia y es compatible con la activación de muchas vias metabolicas relacionadas a esta condición.^4^
+
+Una limitante importante en este estudio es la no inclusion de variables confusoras como el padecimiento de otras enfermedades cronicas , como ser condiciones reumatologicas que pueden causar estado de emaciación, ademas es importante añadir que la definición de los perfiles metabolicos se realizo a partir de metodo estadisticos exploratorios como el PCA y se sugiere realizar metodos multivariantes mas avanzados como el PLS-DA o bien realizar metodos supervisados como regresion logistica o SVM para obtener una mejor capacidad discriminativa entre los dos grupos.
+
+Otro aspecto importante a considerar que puede causar diferencias en la intensidad en la excreta de metabolitos son los posibles sesgos en la recolección de las muestras de orina, como ser , la toma de muestras de orina a cualquier hora del dia, cuando se prefiere una toma de muestras de orina por 24 horas. Otro aspecto que deber considerarse es el ajuste de los datos por medio de la concentración de creatina en sangre, aspecto que no pudo realizarse debido a condiciones de factibilidad y accesibilidad de los pacientes.
+
+Desde el punto de vista clinico es importante desarrollar metodos de tamizaje sencillos como ser los metabolitos urinarios que permiten clasificar a los pacientes con y sin riesgo de caquexia, aunque este estudio no tiene como fin desarrollar un metodo predictivo, permitira que otros investigadores puedan desarrollarlos teniendo en cuenta las limitaciones y hallazgos del presente trabajo.
+
+Teniendo lo anterior en consideración se sugiere realizar investigaciones que integren tecnicas multivariantes con mayor capacidad discriminativa y la composición de una cohorte de pacientes con la inclusion de variables confusoras antes descritas, con el objeto de maximizar la capacidad predictiva de los estudios venideros.
+
+## Conclusiones
+
+Los metabolitos en orina se excretan con distintas concentraciones y siguen una distribución normal, cuando se aplica transformación logaritmica, no se encontro un agrupamiento del perfil metabolico de los pacientes teniendo en cuenta su condicion clinica de tener o no caquexia. En general en la caquexia existe una mayor excreta de metabolitos urinarios, se encontro diferencias estadisticamente significativas con una mayor excreción de 55 metabolitos, ello es compatible con el mecanismo catabolico propio de la caquexia y su activación de multiples vias metabolicas.
+
+## Referencias
+
+-   \[1\] Definición de caquexia 2011. https://www.cancer.gov/espanol/publicaciones/diccionarios/diccionario-cancer/def/caquexia (accessed March 28, 2025).
+
+-   \[2\] Learning to predict cancer-associated skeletal muscle wasting from 1H-NMR profiles of urinary metabolites \| Metabolomics n.d. https://link.springer.com/article/10.1007/s11306-010-0232-9 (accessed March 26, 2025).
+
+-   \[3\] Ziemons J, Smidt ML, Damink SO, Rensen SS. Gut microbiota and metabolic aspects of cancer cachexia. Best Practice & Research Clinical Endocrinology & Metabolism 2021;35:101508. https://doi.org/10.1016/j.beem.2021.101508.
+
+-   \[4\] Petruzzelli M, Wagner EF. Mechanisms of metabolic dysfunction in cancer-associated cachexia. Genes Dev 2016;30:489–501. https://doi.org/10.1101/gad.276733.115
+
+-   \[5\] Dodson S, Baracos VE, Jatoi A, Evans WJ, Cella D, Dalton JT, et al. Muscle wasting in cancer cachexia: clinical implications, diagnosis, and emerging treatment strategies. Annu Rev Med 2011;62:265–79. https://doi.org/10.1146/annurev-med-061509-131248.
+
+-   Enlace a repositorio de Github: <https://github.com/Aarm1990/Rosales_Melendez_Augusto_PEC1>
