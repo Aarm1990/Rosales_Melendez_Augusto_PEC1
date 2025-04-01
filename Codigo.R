@@ -49,6 +49,8 @@ save(objeto_caquexia, file="objeto_caquexia.Rda")
 
 #Análisis exploratorio de los datos
 
+"1. Abordando objetivo 1: Caracterizar los metabolitos presentes en la orina"
+
 
 # Boxplot de los metabolitos 
 par(mar = c(10, 4, 4, 2)) # Configurar el limite inferior del grafico.
@@ -62,7 +64,7 @@ boxplot(t(assay(objeto_caquexia)), # Graficar los valores de los metabolitos
         )
 
 "Al inspeccionar el boxplot de los metabolitos se determina que despues de la transfo
-mación logaritmica siguen una distribución normal"
+mación logaritmica siguen una distribución normal y permite una mejor comparación"
 
 " Los metabolitos con mayor concentracion son la creatinina y el de menor concentracion 
 el fumarato"
@@ -76,7 +78,15 @@ summary(log(caquexia$Fumarate)) # Medidas de dispersion del fumarato.
 sd(log(caquexia$Fumarate))# Desviacion estandar del fumarato
 
 
+
+
+
+"2. Abordando objetivo 2: valuar si existe perfil metabolico diferencial en los pacientes con cancer y caquexia." 
+
 "Realización del analisis de compoentes principales"
+" El objetivo de este análisis es explorar si existe algun agrupamiento segun el perfil metabolico y 
+si existe separación entre los casos y los controles, la reducción de la dimensionalidad permite ver que metabolitos
+son los mas importantes que expliquen la variabilidad de los datos"
 
 #Transponer matriz para la PCA
 matrix<-t(assay(objeto_caquexia))
@@ -89,12 +99,12 @@ condicion <- colData(objeto_caquexia)$Condicion
 
 # Crear gráfico con resultados del PCA
 plot(pca$x[,1], pca$x[,2], # Seleccionar las dos columnas que corresponden al pca1 y pca 2.
-     col = ifelse(condicion == "cachexic", "red", "blue"),# colorear los perfiles metabolicos segun su condicion.
-     pch = 19,
-     xlab = paste0("PC1 (", round(summary(pca)$importance[2,1] * 100, 1), "%)"), # asignar nombres basados en la importancia de los metabolitos del PCA 1
-     ylab = paste0("PC2 (", round(summary(pca)$importance[2,2] * 100, 1), "%)"), # Mismo paso que arriba.
+     col = ifelse(condicion == "cachexic", "red", "blue"),# colorear los perfiles metabolicos segun su condicion usando condicional if.
+     pch = 19, # tamaño de los puntos
+     xlab = paste0("PC1 (", round(summary(pca)$importance[2,1] * 100, 1), "%)"), # asignar a cada punto  la importancia de los metabolitos del PCA 1, expresarlo en %.
+     ylab = paste0("PC2 (", round(summary(pca)$importance[2,2] * 100, 1), "%)"), # Mismo paso que arriba con el PCA 2
      main = "PCA de pacientes según perfiles metabólicos")
-legend("topright", legend = c("Cachexic", "Control"), col = c("red", "blue"), pch = 19)
+legend("topright", legend = c("Cachexic", "Control"), col = c("red", "blue"), pch = 19) # asignar la leyenda segun las categorias.
 
 
 # Representar los componentes del PCA
@@ -111,6 +121,17 @@ barplot(importancia_PC1,
         ylab = "Valor absoluto del loading")
 
 
+"Conclusion: existe solapamiento importante entre los perfiles metabolicos entre los casos y controles, 
+probablemente se necesitaran metodos mas avanzados que el análisis exploratorio. Como regresion logística, Vectores SVE, pero no son parte de los objetivos del articulo."
+
+
+
+
+
+
+
+"3. Abordando objetivo 2: valuar si existe perfil metabolico diferencial en los pacientes con cancer y caquexia." 
+
 "Análisis comparativo: Diferencia de medias de metabolitos entre grupos"
 
 # Extraer los metadatos y valores de los metabolitos.
@@ -119,8 +140,8 @@ grupo <- colData(objeto_caquexia)$Condicion   # Vector de grupo (cachexic / cont
 
 # Crear dataframe para guardar resultados de la T de student.
 resultados <- data.frame(
-  Metabolito = rownames(metabolitos),
-  p_value = NA, # Llenar con valores nuelos
+  Metabolito = rownames(metabolitos), # aplicar los nombres de las filas segun el nombre de los metabolitos.
+  p_value = NA, # Llenar con valores nulos las siguientes columnas
   media_cachexic = NA,
   media_control = NA
 )
@@ -129,7 +150,7 @@ resultados <- data.frame(
 for (i in 1:nrow(metabolitos)) { #Bucle que por cada metabolito extrae los valores y los compara segun grupos.
   valores <- metabolitos[i, ] # Iterar por cada metabolito
   grupo1 <- valores[grupo == "cachexic"] # asignar cada valor si tiene caquexia.
-  grupo2 <- valores[grupo == "control"]
+  grupo2 <- valores[grupo == "control"] # asignar cada valor si es del grupo de control.
   
   prueba <- t.test(grupo1, grupo2) # Hacer la T de student.
   
@@ -147,6 +168,6 @@ resultados <- resultados[order(resultados$p_value), ]
 # Ver los top 10 de valores de p.
 head(resultados, 10)
 
-
+"Solo se presentaran los resultados de los 10 primeros metabolitos por cuestiones de espacio e importancia biologica."
 
 

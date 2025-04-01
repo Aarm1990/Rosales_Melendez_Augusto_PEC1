@@ -23,7 +23,7 @@ La caquexia es una afección caracterizada por una pérdida de más del 10 % del
 
 -   Evaluar si existe perfil metabolico diferencial en los pacientes con cancer y caquexia.
 
--   Comparar la excreción de metabolitos urinarios entre los casos y los controles.
+-   Comparar si existen excreción diferencial en los metabolitos urinarios entre los casos y los controles.
 
 ## Materiales y metodos
 
