@@ -26,7 +26,7 @@ colnames(metadatos)<-c("Id_paciente", "Condicion")
 
 #Extraer resultados de experimento (Metabolitos).
 metabolitos<-log(caquexia[,-c(1:2)]) # aplicar transformacion log a los datos
-# Se aplica transformacion log porque la concentración de los metabolitos es dispar.
+# Se aplica transformacion log porque para lograr normalizar los datos.
 
 
 # Transponer la tabla de metabolitos 
@@ -76,7 +76,7 @@ summary(log(caquexia$Fumarate)) # Medidas de dispersion del fumarato.
 sd(log(caquexia$Fumarate))# Desviacion estandar del fumarato
 
 
-"Realización del analisis de compoentes princiaples"
+"Realización del analisis de compoentes principales"
 
 #Transponer matriz para la PCA
 matrix<-t(assay(objeto_caquexia))
@@ -127,15 +127,15 @@ resultados <- data.frame(
 
 # Loop por cada metabolito para comparar medias entre grupos 
 for (i in 1:nrow(metabolitos)) { #Bucle que por cada metabolito extrae los valores y los compara segun grupos.
-  valores <- metabolitos[i, ]
-  grupo1 <- valores[grupo == "cachexic"]
+  valores <- metabolitos[i, ] # Iterar por cada metabolito
+  grupo1 <- valores[grupo == "cachexic"] # asignar cada valor si tiene caquexia.
   grupo2 <- valores[grupo == "control"]
   
   prueba <- t.test(grupo1, grupo2) # Hacer la T de student.
   
   resultados$p_value[i] <- prueba$p.value # Guardar valor de p en el dataframe resultados
-  resultados$media_cachexic[i] <- mean(grupo1, na.rm = TRUE) # Guardar las medias
-  resultados$media_control[i] <- mean(grupo2, na.rm = TRUE)
+  resultados$media_cachexic[i] <- mean(grupo1, na.rm = TRUE) # Guardar las medias del grupo de caquexia
+  resultados$media_control[i] <- mean(grupo2, na.rm = TRUE) # Guardar las medias del grupo control.
 }
 
 # Ajustar valor de p con comparaciones multiples FDR
