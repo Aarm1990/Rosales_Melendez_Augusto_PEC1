@@ -33,7 +33,7 @@ Estudio comparativo de muestras de orina en pacientes con estadio avanzando de c
 
 ### Recolección de la muestra
 
-La muestra de orina se recolecto en una sola toma, la entrega se realizo voluntariamente por parte de los pacientes, previo consentimiento informado y aprobación del comite de etica local.
+La muestra de orina se recolecto en una sola toma, la entrega se realizo voluntariamente por parte de los pacientes, previo consentimiento informado y aprobación del comite de etica local. ( Esto se incluye para darle mas contexto al trabajo).
 
 ### Espectrometría
 
@@ -51,7 +51,7 @@ El procesamiento de datos se realizo en RStudio V. 2024.12.1, los datos del expe
 
 ### Análisis de datos
 
-El analisis descriptivo se realizo mediante un gráfico de caja y bigotes de todos los metabolitos, con el fin de observar su distribución. Para el analisis exploratorio se uso un analisis de componentes principales con el fin de reducir la dimensionalidad de los datos y encontrar posibles agrupamientos segun su estado de caquexia. Finalmente el analisis Bivariado se hizo uso de una prueba de T de student con correción tipo FDR, con el objeto de comparar las medias de los metabolitos y evaluar si existen diferencias estadisticamente significativas en la excreta de los metabolitos en orina en los casos y controles. El analisis se documento completamente y esta disponible en un repositorio de Github creado por el investigador. Ver archivo codigo.
+El analisis descriptivo se realizo mediante un gráfico de caja y bigotes de todos los metabolitos, con el fin de observar su distribución. Para el analisis exploratorio se uso un analisis de componentes principales con el fin de reducir la dimensionalidad de los datos y encontrar posibles agrupamientos segun su estado de caquexia. Finalmente el analisis Bivariado se hizo uso de una prueba de T de student con correción tipo FDR, con el objeto de comparar las medias de los metabolitos y evaluar si existen diferencias estadisticamente significativas en la excreta de los metabolitos en orina en los casos y controles. El analisis se documento completamente y esta disponible en un repositorio de Github creado por el investigador. (Ver archivo codigo).
 
 ## Resultados
 
@@ -67,7 +67,7 @@ Figura 2. Importancia de cada metabolito al PCA 1
 
 ![](images/clipboard-1129151276.png){fig-align="center" width="446"}
 
-El analisis del PCA revelo que no agrupamiento en el perfil metabolico de los pacientes con y sin caquexia, pero existe cierta tendencia a que los pacientes con caquexia tengan valores mas extremos en su perfil metabolico.
+El analisis del PCA revelo que no hay agrupamiento en el perfil metabolico de los pacientes con y sin caquexia, pero existe cierta tendencia a que los pacientes con caquexia tengan valores mas extremos en su perfil metabolico.
 
 ![](images/clipboard-2506994193.png){fig-align="center" width="482"}
 
@@ -96,15 +96,15 @@ La excreción aumentada de metabolitos como la glucosa, creatinina, adipato y qu
 
 Una limitante importante en este estudio es la no inclusion de variables confusoras como el padecimiento de otras enfermedades cronicas , como ser condiciones reumatologicas que pueden causar estado de emaciación, ademas es importante añadir que la definición de los perfiles metabolicos se realizo a partir de metodo estadisticos exploratorios como el PCA y se sugiere realizar metodos multivariantes mas avanzados como el PLS-DA o bien realizar metodos supervisados como regresion logistica o SVM para obtener una mejor capacidad discriminativa entre los dos grupos.
 
-Otro aspecto importante a considerar que puede causar diferencias en la intensidad en la excreta de metabolitos son los posibles sesgos en la recolección de las muestras de orina, como ser , la toma de muestras de orina a cualquier hora del dia, cuando se prefiere una toma de muestras de orina por 24 horas. Otro aspecto que deber considerarse es el ajuste de los datos por medio de la concentración de creatina en sangre, aspecto que no pudo realizarse debido a condiciones de factibilidad y accesibilidad de los pacientes.
+Otro aspecto importante a considerar que puede causar diferencias en la intensidad en la excreta de metabolitos son los posibles sesgos en la recolección de las muestras de orina, uno de los mas imporantes es que la toma de muestras de orina se realizo en cualquier hora del dia, cuando se prefiere una toma de muestras de orina continua por 24 horas. Otro aspecto que deber considerarse es el ajuste de las intensidades de los metabolitos por medio de la concentración de creatininaa en sangre, aspecto que no pudo realizarse debido a condiciones de factibilidad y accesibilidad de los pacientes.
 
 Desde el punto de vista clinico es importante desarrollar metodos de tamizaje sencillos como ser los metabolitos urinarios que permiten clasificar a los pacientes con y sin riesgo de caquexia, aunque este estudio no tiene como fin desarrollar un metodo predictivo, permitira que otros investigadores puedan desarrollarlos teniendo en cuenta las limitaciones y hallazgos del presente trabajo.
 
-Teniendo lo anterior en consideración se sugiere realizar investigaciones que integren tecnicas multivariantes con mayor capacidad discriminativa y la composición de una cohorte de pacientes con la inclusion de variables confusoras antes descritas, con el objeto de maximizar la capacidad predictiva de los estudios venideros.
+Teniendo lo anterior en consideración se sugiere realizar investigaciones que integren tecnicas multivariantes con mayor capacidad discriminativa y la composición de una cohorte de pacientes con la inclusion de variables confusoras antes descritas, con el objeto de maximizar la capacidad predictiva de los estudios futuros.
 
 ## Conclusiones
 
-Los metabolitos en orina se excretan con distintas concentraciones y siguen una distribución normal, cuando se aplica transformación logaritmica, no se encontro un agrupamiento del perfil metabolico de los pacientes teniendo en cuenta su condicion clinica de tener o no caquexia. En general en la caquexia existe una mayor excreta de metabolitos urinarios, se encontro diferencias estadisticamente significativas con una mayor excreción de 55 metabolitos, ello es compatible con el mecanismo catabolico propio de la caquexia y su activación de multiples vias metabolicas.
+Los metabolitos en orina se excretan con distintas concentraciones con diferencias en escalas logaritmica, no se encontro un agrupamiento del perfil metabolico de los pacientes teniendo en cuenta su condicion clinica de tener o no caquexia. En general en la caquexia existe una mayor excreta de metabolitos urinarios, se encontro diferencias estadisticamente significativas con una mayor excreción de 55 metabolitos, ello es compatible con el mecanismo catabolico propio de la caquexia y su activación de multiples vias metabolicas.
 
 ## Referencias
 
